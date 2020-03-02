@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>edu.urbe</groupId>
 	<artifactId>spring-cloud-gateway</artifactId>
-	<version>0.0.1-RELEASE</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>spring-cloud-gateway</name>
 	<description>Spring Cloud Gateway for Spring Boot</description>
 
@@ -22,7 +22,7 @@
 
 	<scm>
 		<connection>scm:git:git@gitlab.urbe.edu:urbe/spring-cloud-gateway.git</connection>
-	  <tag>v0.0.1-RELEASE</tag>
+	  <tag>HEAD</tag>
   </scm>
 
 	<dependencies>
