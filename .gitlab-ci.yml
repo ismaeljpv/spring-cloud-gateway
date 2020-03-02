@@ -1,0 +1,44 @@
+stages:
+  - test
+  - build
+  - package
+
+image: maven:3.6-jdk-8
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+  MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version"
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+
+cache:
+  paths:
+    - .m2/repository
+
+test:
+  stage: test
+  script:
+   - echo "Running tests"
+
+build:
+  stage: build
+  script:
+   - cd $CI_PROJECT_DIR
+   - mvn package -Deureka_server="$EUREKA_SERVER"
+  artifacts:
+    paths:
+      - target/*.jar
+  only:
+   - master
+
+docker-build:
+  image: docker:19.03.5
+  services:
+      - docker:19.03.5-dind
+  stage: package
+  script:
+    - docker build -t $GITLAB_SERVER/urbe/spring-cloud-gateway .
+    - docker login -u $GITLAB_USER_API -p $GITLAB_TOKEN $GITLAB_SERVER
+    - docker push $GITLAB_SERVER/urbe/spring-cloud-gateway
+  only:
+    - master
