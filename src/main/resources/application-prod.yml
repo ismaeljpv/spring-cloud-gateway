@@ -1,0 +1,38 @@
+server:
+  port: 8000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: $eureka_server
+    fetch-registry: true
+    register-with-eureka: false
+  instance:
+    prefer-ip-address: true
+
+spring:
+  application:
+    name: spring-cloud-gateway  
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+    gateway:
+      routes:
+      - id: api-bookstore
+        uri: lb://api-bookstore
+        predicates:
+        - Path=/bookstore/**
+        filters:
+        - RewritePath=/bookstore/(?<segment>.*), /$\{segment}
+      - id: api-credential-validator
+        uri: lb://api-credential-validator
+        predicates:
+        - Path=/credential/**
+        filters:
+        - RewritePath=/credential/(?<segment>.*), /$\{segment}
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
