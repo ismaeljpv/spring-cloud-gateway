@@ -24,7 +24,7 @@ build:
   stage: build
   script:
    - cd $CI_PROJECT_DIR
-   - mvn package
+   - mvn package -Deureka_server="$EUREKA_SERVER"
   artifacts:
     paths:
       - target/*.jar
@@ -37,8 +37,8 @@ docker-build:
       - docker:19.03.5-dind
   stage: package
   script:
-    - docker build -t $GITLAB_SERVER/microservicios/bookstore .
+    - docker build -t $GITLAB_SERVER/urbe/spring-cloud-gateway .
     - docker login -u $GITLAB_USER_API -p $GITLAB_TOKEN $GITLAB_SERVER
-    - docker push $GITLAB_SERVER/microservicios/bookstore
+    - docker push $GITLAB_SERVER/urbe/spring-cloud-gateway
   only:
     - master
