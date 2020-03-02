@@ -24,7 +24,7 @@ build:
   stage: build
   script:
    - cd $CI_PROJECT_DIR
-   - mvn package -Deureka_server="$EUREKA_SERVER"
+   - mvn package
   artifacts:
     paths:
       - target/*.jar
