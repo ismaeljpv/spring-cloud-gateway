@@ -18,6 +18,12 @@ spring:
       ribbon:
         enabled: false
     gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
       routes:
       - id: api-bookstore
         uri: lb://api-bookstore
