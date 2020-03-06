@@ -37,6 +37,12 @@ spring:
         - Path=/credential/**
         filters:
         - RewritePath=/credential/(?<segment>.*), /$\{segment}
+      - id: api-preinscription
+        uri: lb://api-preinscription
+        predicates:
+        - Path=/preinscription/**
+        filters:
+        - RewritePath=/preinscription/(?<segment>.*), /$\{segment}
 
 logging:
   level:
