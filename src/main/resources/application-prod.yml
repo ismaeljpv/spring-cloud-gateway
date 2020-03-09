@@ -43,6 +43,12 @@ spring:
         - Path=/preinscription/**
         filters:
         - RewritePath=/preinscription/(?<segment>.*), /$\{segment}
+      - id: api-web-core
+        uri: lb://api-web-core
+        predicates:
+        - Path=/web/**
+        filters:
+        - RewritePath=/web/(?<segment>.*), /$\{segment}    
 
 logging:
   level:
