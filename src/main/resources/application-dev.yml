@@ -48,11 +48,19 @@ spring:
         predicates:
         - Path=/web/**
         filters:
-        - RewritePath=/web/(?<segment>.*), /$\{segment}  
+        - RewritePath=/web/(?<segment>.*), /$\{segment}
+
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
-    reactor.netty.http.client: DEBUG
-        
-    
+    reactor.netty.http.client: DEBUG\
+
