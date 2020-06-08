@@ -49,10 +49,16 @@ spring:
         - Path=/web/**
         filters:
         - RewritePath=/web/(?<segment>.*), /$\{segment}
+      - id: payment-notification
+        uri: lb://payment-notification
+        predicates:
+        - Path=/wiretransfer/**
+        filters:
+        - RewritePath=/wiretransfer/(?<segment>.*), /$\{segment}    
 
 logging:
   level:
-    org.springframework.cloud.gateway: DEBUG
-    reactor.netty.http.client: DEBUG
+    org.springframework.cloud.gateway: INFO
+    reactor.netty.http.client: INFO
   file:
     name: spring-cloud-gateway
