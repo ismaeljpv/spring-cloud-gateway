@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>edu.urbe</groupId>
 	<artifactId>spring-cloud-gateway</artifactId>
-	<version>0.0.7-RELEASE</version>
+	<version>0.0.1-RELEASE</version>
 	<name>spring-cloud-gateway</name>
 	<description>Spring Cloud Gateway for Spring Boot</description>
 
@@ -19,11 +19,6 @@
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Hoxton.SR1</spring-cloud.version>
 	</properties>
-
-	<scm>
-		<connection>scm:git:git@gitlab.urbe.edu:urbe/spring-cloud-gateway.git</connection>
-	  <tag>v0.0.7-RELEASE</tag>
-  </scm>
 
 	<dependencies>
 		<dependency>
@@ -94,22 +89,5 @@
         </resources>
 		<finalName>app</finalName>
 	</build>
-
-	<repositories>
-		<repository>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>central</id>
-			<name>libs-release</name>
-			<url>https://artifactory.urbe.edu/artifactory/libs-release</url>
-		</repository>
-		<repository>
-			<snapshots />
-			<id>snapshots</id>
-			<name>libs-snapshot</name>
-			<url>https://artifactory.urbe.edu/artifactory/libs-snapshot</url>
-		</repository>
-	</repositories>
 
 </project>
