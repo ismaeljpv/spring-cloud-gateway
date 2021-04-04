@@ -25,37 +25,13 @@ spring:
             allowedMethods: "*"
             allowedHeaders: "*"
       routes:
-      - id: api-bookstore
-        uri: lb://api-bookstore
+      - id: api-microservice
+        uri: lb://api-microservice
         predicates:
-        - Path=/bookstore/**
+        - Path=/microservice/**
         filters:
         - RewritePath=/bookstore/(?<segment>.*), /$\{segment}
-      - id: api-credential-validator
-        uri: lb://api-credential-validator
-        predicates:
-        - Path=/credential/**
-        filters:
-        - RewritePath=/credential/(?<segment>.*), /$\{segment}
-      - id: api-preinscription
-        uri: lb://api-preinscription
-        predicates:
-        - Path=/preinscription/**
-        filters:
-        - RewritePath=/preinscription/(?<segment>.*), /$\{segment}
-      - id: api-web-core
-        uri: lb://api-web-core
-        predicates:
-        - Path=/web/**
-        filters:
-        - RewritePath=/web/(?<segment>.*), /$\{segment}
-      - id: payment-notification
-        uri: lb://payment-notification
-        predicates:
-        - Path=/wiretransfer/**
-        filters:
-        - RewritePath=/wiretransfer/(?<segment>.*), /$\{segment}  
-
+      
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
